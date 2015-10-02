@@ -26,7 +26,7 @@ public class RandomNumberGenerator extends BaseOperator implements InputOperator
   @Override
   public void emitTuples()
   {
-    if (count++ < 100) {
+    for(int blastCount = 0; count++ < numTuples && blastCount < 1000; blastCount++) {
       out.emit(Math.random());
     }
   }

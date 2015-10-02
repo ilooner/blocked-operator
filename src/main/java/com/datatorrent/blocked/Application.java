@@ -22,10 +22,10 @@ public class Application implements StreamingApplication
     // Replace this code with the DAG you want to build
 
     RandomNumberGenerator randomGenerator = dag.addOperator("randomGenerator", RandomNumberGenerator.class);
-    randomGenerator.setNumTuples(500);
+    randomGenerator.setNumTuples(50000);
 
-    ConsoleOutputOperator cons = dag.addOperator("console", new ConsoleOutputOperator());
+    BlockingOperator blockingOperator = dag.addOperator("console", new BlockingOperator());
 
-    dag.addStream("randomData", randomGenerator.out, cons.input).setLocality(Locality.CONTAINER_LOCAL);
+    dag.addStream("randomData", randomGenerator.out, blockingOperator.input);
   }
 }
