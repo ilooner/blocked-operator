@@ -20,7 +20,7 @@ public class BlockingOperator extends BaseOperator
     public void process(Double t)
     {
       try {
-        lock.wait();
+        Thread.sleep(Long.MAX_VALUE);
       } catch (InterruptedException ex) {
         Logger.getLogger(BlockingOperator.class.getName()).log(Level.SEVERE, null, ex);
       }
